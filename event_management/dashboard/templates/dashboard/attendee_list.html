@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendees{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4 sm:mb-0">Attendees</h1>
+        {% if user.is_superuser %}
+        <button onclick="document.getElementById('attendeeModal').classList.remove('hidden')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+            Add Attendee
+        </button>
+        {% endif %}
+    </div>
+
+    <div class="grid gap-6">
+        {% for attendee in attendees %}
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start">
+                <div>
+                    <h3 class="text-xl font-semibold">{{ attendee.name }}</h3>
+                    <p class="text-gray-600 mt-2">{{ attendee.email }}</p>
+                    <p class="text-gray-500 mt-1">{{ attendee.phone }}</p>
+                </div>
+                {% if user.is_superuser %}
+                <form method="post" action="{% url 'remove_attendee' attendee.id %}" class="mt-4 sm:mt-0">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Remove</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Attendee Modal -->
+    <div id="attendeeModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-auto p-6">
+            <h2 class="text-xl font-bold mb-4">Add New Attendee</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="flex justify-end">
+                    <button type="button" onclick="document.getElementById('attendeeModal').classList.add('hidden')" 
+                            class="mr-2 px-4 py-2 text-gray-500 hover:text-gray-700">Cancel</button>
+                    <button type="submit" 
+                            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
