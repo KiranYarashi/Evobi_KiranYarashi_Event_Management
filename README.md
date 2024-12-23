@@ -12,7 +12,7 @@
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/event_management.git
+    git clone https://github.com/yourusername/event_management.git](https://github.com/KiranYarashi/Evobi_KiranYarashi_Event_Management.git
     cd event_management
     ```
 
