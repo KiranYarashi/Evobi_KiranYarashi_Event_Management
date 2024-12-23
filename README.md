@@ -37,8 +37,13 @@
     ```sh
     python manage.py createsuperuser
     ```
-
+    
 6. Run the development server:
+    ```sh
+    cd event_management
+    ```
+    
+7. Run the development server:
     ```sh
     python manage.py runserver
     ```
