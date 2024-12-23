@@ -29,6 +29,7 @@
 
 4. Apply migrations to set up the database:
     ```sh
+    pyhton manage.py makemigrations
     python manage.py migrate
     ```
 
