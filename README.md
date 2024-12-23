@@ -13,7 +13,7 @@
 1. Clone the repository:
     ```sh
     git clone https://github.com/KiranYarashi/Evobi_KiranYarashi_Event_Management.git
-    cd event_management
+    cd Evobi_KiranYarashi_Event_Management
     ```
 
 2. Create and activate a virtual environment:
